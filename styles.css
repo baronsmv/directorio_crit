@@ -1,0 +1,270 @@
+/* ---------- Global ---------- */
+:root {
+  --primary: #5c1d6e;
+  --primary-light: #a76fcf;
+  --bg: #1a0f26;
+  --card-bg: rgba(92, 29, 110, 0.12);
+  --card-border: rgba(167, 111, 207, 0.25);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.75);
+  --hover: rgba(167, 111, 207, 0.18);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+header {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+}
+
+header h1 {
+  color: var(--primary-light);
+  text-align: center;
+  font-weight: 900;
+  font-size: 2.5rem;
+}
+
+/* ---------- Search Bar ---------- */
+.controls input[type="search"] {
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  font-size: 0.95rem;
+  width: min(360px, 90%);
+  transition: background 0.25s ease, border 0.25s ease;
+}
+
+.controls input[type="search"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.controls input[type="search"]:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ---------- Section ---------- */
+.section {
+  padding: 1.5rem;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: color 0.25s ease;
+}
+
+.section-title h2 {
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  margin: 0;
+  font-weight: 600;
+}
+
+.section-title span {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  transition: transform 0.3s ease;
+}
+
+.section.collapsed .section-title span {
+  transform: rotate(-90deg);
+}
+
+.section.collapsed .cards {
+  display: none;
+}
+
+/* ---------- Grid ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  border: 1px solid var(--card-border);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: var(--hover);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Card content ---------- */
+.card img {
+  width: clamp(100px, 80%, 200px);
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.8rem;
+}
+
+.card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card .position {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-bottom: 0.8rem;
+}
+
+.card .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.card .meta span {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* ---------- Email ---------- */
+.card .email {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: underline;
+  opacity: 0.9;
+  word-break: break-word;
+}
+
+.card .email:hover {
+  color: var(--text-muted);
+}
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--card-bg);
+  color: var(--text);
+  border-radius: 20px;
+  padding: 2rem;
+  width: min(90vw, 420px);
+  text-align: center;
+  position: relative;
+  animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+  from {
+    transform: translateY(10px) scale(.96);
+    opacity: 0;
+  }
+}
+
+.modal img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid rgba(255,255,255,.4);
+}
+
+.modal-close {
+  position: absolute;
+  top: .6rem;
+  right: .6rem;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--primary-light);
+}
+
+.modal-meta {
+  margin-top: .75rem;
+  font-size: .9rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-meta span {
+  color: var(--text-muted);
+}
+
+.modal-email {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: .9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 400px) {
+  .cards {
+    gap: 0.8rem;
+  }
+
+  .card {
+    padding: 1rem 0.6rem;
+  }
+
+  .modal {
+    padding: 1rem 0.8rem;
+  }
+}

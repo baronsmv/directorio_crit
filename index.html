@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Directorio CRIT Hidalgo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>Directorio CRIT Hidalgo</h1>
+
+  <div class="controls">
+    <input
+      id="search"
+      type="search"
+      placeholder="Buscar por nombre, puesto, extensión…"
+      aria-label="Buscar contacto"
+    />
+  </div>
+</header>
+
+<main id="directory" aria-live="polite"></main>
+
+<div id="modalOverlay" class="modal-overlay">
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalName"
+  >
+    <button class="modal-close" aria-label="Cerrar">✕</button>
+
+    <a id="modalPhotoLink" href="#" target="_blank" rel="noopener">
+      <img id="modalPhoto" alt="" />
+    </a>
+
+    <h2 id="modalName"></h2>
+    <p id="modalPosition"></p>
+
+    <div class="modal-meta">
+      <span id="modalExt"></span>
+      <span id="modalCub"></span>
+    </div>
+
+    <a id="modalEmail" class="modal-email"></a>
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
