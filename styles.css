@@ -2,7 +2,7 @@
 :root {
     --primary: #5c1d6e;
     --primary-light: #FECD02;
-    --bg: #77479B;
+    --bg: linear-gradient(135deg, #5c1d6e, #77479B);
     --card-bg: rgba(92, 29, 110, 0.12);
     --card-border: rgba(167, 111, 207, 0.25);
     --text: #FECD02;
@@ -25,10 +25,7 @@ header {
 }
 
 header h1 {
-    color: var(--primary-light);
-    text-align: center;
-    font-weight: 900;
-    font-size: 2.5rem;
+    text-shadow: 0 0 12px rgba(254, 205, 2, 0.8);
 }
 
 /* ---------- Search Bar ---------- */
@@ -117,8 +114,8 @@ header h1 {
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    background: var(--hover);
+    transform: translateY(-8px) scale(1.03);
+    background: linear-gradient(145deg, rgba(167, 111, 207, 0.25), rgba(92, 29, 110, 0.25));
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.25);
 }
