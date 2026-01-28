@@ -63,21 +63,42 @@ function render(sections) {
 }
 
 // ---------- Filter ----------
+// ---------- Filter ----------
 function filter(sections, term) {
-  term = term.toLowerCase();
+    term = term
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-  const filtered = sections
-    .map(s => ({
-      ...s,
-      contacts: s.contacts.filter(c =>
-        Object.values(c).some(v =>
-          String(v ?? "").toLowerCase().includes(term)
-        )
-      )
-    }))
-    .filter(s => s.contacts.length);
+    const filtered = sections
+        .map(section => {
+            const sectionMatches = section.name
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .includes(term);
 
-  render(filtered);
+            // If section title matches, keep all contacts
+            if (sectionMatches) {
+                return section;
+            }
+
+            // Otherwise, filter contacts
+            const contacts = section.contacts.filter(c =>
+                Object.values(c).some(v =>
+                    String(v ?? "")
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .includes(term)
+                )
+            );
+
+            return { ...section, contacts };
+        })
+        .filter(section => section.contacts.length);
+
+    render(filtered);
 }
 
 // ---------- Create Card ----------
@@ -89,7 +110,7 @@ function createCard(c) {
 
   // Image
   const img = document.createElement("img");
-  const base = c.extension ?? "default";
+  const base = c.nomina ?? "default";
   img.src = `photos/${base}.jpg`;
   img.alt = c.name;
   img.dataset.triedPng = "false";
@@ -129,11 +150,8 @@ function createCard(c) {
 function openModal(c) {
   lastFocusedElement = document.activeElement;
 
-  const modalPhoto = document.getElementById("modalPhoto");
-  const modalPhotoLink = document.getElementById("modalPhotoLink");
-
   // Set the image src and link, fallback to default if not found
-  modalPhoto.src = `photos/${c.extension ?? "default"}.jpg`;
+  modalPhoto.src = `photos/${c.nomina ?? "default"}.jpg`;
   modalPhoto.alt = c.name;
   modalPhotoLink.href = modalPhoto.src;
 
@@ -142,12 +160,11 @@ function openModal(c) {
     modalPhotoLink.href = modalPhoto.src;
   };
 
-  document.getElementById("modalName").textContent = c.name;
-  document.getElementById("modalPosition").textContent = c.position ?? "";
-  document.getElementById("modalExt").textContent = c.extension ? `Ext: ${c.extension}` : "";
-  document.getElementById("modalCub").textContent = c.cubicle ?? "";
+  modalName.textContent = c.name;
+  modalPosition.textContent = c.position ?? "";
+  modalExt.textContent = c.extension ? `Ext: ${c.extension}` : "";
+  modalCub.textContent = c.cubicle ?? "";
 
-  const modalEmail = document.getElementById("modalEmail");
   if (c.email) {
     modalEmail.href = `mailto:${c.email}`;
     modalEmail.textContent = c.email;

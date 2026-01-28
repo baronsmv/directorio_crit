@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Directorio CRIT Hidalgo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8"/>
+    <title>Directorio CRIT Hidalgo</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
 
 <header>
-  <h1>Directorio CRIT Hidalgo</h1>
+    <h1>Directorio CRIT Hidalgo</h1>
 
-  <div class="controls">
-    <input
-      id="search"
-      type="search"
-      placeholder="Buscar por nombre, puesto, extensión…"
-      aria-label="Buscar contacto"
-    />
-  </div>
+    <div class="controls">
+        <input
+                aria-label="Buscar contacto"
+                id="search"
+                placeholder="Buscar por nombre, puesto, extensión…"
+                type="search"
+        />
+    </div>
 </header>
 
-<main id="directory" aria-live="polite"></main>
+<main aria-live="polite" id="directory"></main>
 
-<div id="modalOverlay" class="modal-overlay">
-  <div
-    class="modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modalName"
-  >
-    <button class="modal-close" aria-label="Cerrar">✕</button>
+<div class="modal-overlay" id="modalOverlay">
+    <div
+            aria-labelledby="modalName"
+            aria-modal="true"
+            class="modal"
+            role="dialog"
+    >
+        <button aria-label="Cerrar" class="modal-close">✕</button>
 
-    <a id="modalPhotoLink" href="#" target="_blank" rel="noopener">
-      <img id="modalPhoto" alt="" />
-    </a>
+        <a href="#" id="modalPhotoLink" rel="noopener" target="_blank">
+            <img alt="" id="modalPhoto"/>
+        </a>
 
-    <h2 id="modalName"></h2>
-    <p id="modalPosition"></p>
+        <h2 id="modalName"></h2>
+        <p id="modalPosition"></p>
 
-    <div class="modal-meta">
-      <span id="modalExt"></span>
-      <span id="modalCub"></span>
+        <div class="modal-meta">
+            <span id="modalExt"></span>
+            <span id="modalCub"></span>
+        </div>
+
+        <a class="modal-email" id="modalEmail"></a>
     </div>
-
-    <a id="modalEmail" class="modal-email"></a>
-  </div>
 </div>
 
 <script src="app.js"></script>
