@@ -81,8 +81,21 @@ header h1 {
     transform: rotate(-90deg);
 }
 
+.section.collapsed .card {
+    pointer-events: none;
+}
+
 .section.collapsed .cards {
-    display: none;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+.section .cards {
+    max-height: 2000px;
+    opacity: 1;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
 }
 
 /* ---------- Grid ---------- */
