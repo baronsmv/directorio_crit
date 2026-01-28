@@ -1,12 +1,13 @@
 /* ---------- Global ---------- */
 :root {
-    --primary: #5c1d6e;
-    --primary-light: #FECD02;
     --bg: linear-gradient(135deg, #5c1d6e, #77479B);
+    --primary-light: #FECD02;
     --card-bg: rgba(92, 29, 110, 0.12);
     --card-border: rgba(167, 111, 207, 0.25);
-    --text: #FECD02;
-    --text-muted: rgba(255, 255, 255, 0.75);
+    --name: rgba(255, 255, 255, 0.9);
+    --position: rgba(255, 255, 255, 0.85);
+    --meta: rgba(255, 255, 255, 0.8);
+    --email: rgba(255, 255, 255, 0.8);
     --hover: rgba(167, 111, 207, 0.18);
 }
 
@@ -14,12 +15,13 @@ body {
     margin: 0;
     font-family: "Myriad Pro", sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--primary-light);
     min-height: 100vh;
 }
 
 /* ---------- Header ---------- */
 header {
+    position: relative;
     text-align: center;
     padding: 2.5rem 1rem 2rem;
 }
@@ -28,13 +30,31 @@ header h1 {
     text-shadow: 0 0 12px rgba(254, 205, 2, 0.8);
 }
 
+header .logo {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-mask-image: url("static/logo_blanco.png");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-image: url("static/logo_blanco.png");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    background-color: var(--primary-light);
+    width: 450px;
+    height: 450px;
+}
+
 /* ---------- Search Bar ---------- */
 .controls input[type="search"] {
     padding: 0.8rem 1rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     background: rgba(255, 255, 255, 0.12);
-    color: var(--text);
+    color: var(--primary-light);
     font-size: 0.95rem;
     width: min(360px, 90%);
     transition: background 0.25s ease, border 0.25s ease;
@@ -145,12 +165,14 @@ header h1 {
 }
 
 .card h3 {
+    color: var(--name);
     margin: 0 0 0.3rem;
     font-size: 1.1rem;
     font-weight: 600;
 }
 
 .card .position {
+    color: var(--position);
     font-size: 0.9rem;
     font-weight: 400;
     opacity: 0.85;
@@ -158,6 +180,7 @@ header h1 {
 }
 
 .card .meta {
+    color: var(--meta);
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
@@ -176,14 +199,14 @@ header h1 {
 /* ---------- Email ---------- */
 .card .email {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--email);
     text-decoration: underline;
     opacity: 0.9;
     word-break: break-word;
 }
 
 .card .email:hover {
-    color: var(--text-muted);
+    color: var(--email);
 }
 
 /* ---------- Modal ---------- */
@@ -207,7 +230,7 @@ header h1 {
 
 .modal {
     background: var(--card-bg);
-    color: var(--text);
+    color: var(--primary-light);
     border-radius: 20px;
     padding: 2rem;
     width: min(90vw, 420px);
@@ -252,14 +275,22 @@ header h1 {
     gap: 1rem;
 }
 
+#modalName {
+    color: var(--name);
+}
+
+#modalPosition {
+    color: var(--position);
+}
+
 .modal-meta span {
-    color: var(--text-muted);
+    color: var(--meta);
 }
 
 .modal-email {
     display: inline-block;
     margin-top: 1rem;
-    color: var(--text-muted);
+    color: var(--email);
     font-size: .9rem;
 }
 
