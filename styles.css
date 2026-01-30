@@ -299,7 +299,7 @@ header .logo {
 @media (max-width: 480px) {
     header {
         position: relative;
-        padding-top: 15vh;
+        padding-top: 30vw;
     }
 
     header h1 {
