@@ -27,6 +27,7 @@ header {
 }
 
 header h1 {
+    font-size: 4vw;
     text-shadow: 0 0 12px rgba(254, 205, 2, 0.8);
 }
 
@@ -44,8 +45,8 @@ header .logo {
     mask-position: center;
     mask-size: contain;
     background-color: var(--primary-light);
-    width: 450px;
-    height: 450px;
+    width: 30vw;
+    height: 30vw;
 }
 
 /* ---------- Search Bar ---------- */
@@ -295,7 +296,29 @@ header .logo {
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 400px) {
+@media (max-width: 480px) {
+    header {
+        position: relative;
+        padding-top: 15vh;
+    }
+
+    header h1 {
+        font-size: 8vw;
+    }
+
+    header .logo {
+        top: 5rem;
+        width: 90vw;
+        height: 90vw;
+        margin: auto;
+    }
+
+    .controls input[type="search"] {
+        width: 80vw;
+        height: 6.5vh;
+        font-size: 0.95rem;
+    }
+
     .cards {
         gap: 0.8rem;
     }
