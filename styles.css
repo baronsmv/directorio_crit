@@ -72,6 +72,54 @@ header .logo {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* ---------- Expand / Collapse Button ---------- */
+.controls {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#toggleAllBtn {
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.25s ease,
+    border 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+#toggleAllBtn:hover {
+    background: linear-gradient(
+            145deg,
+            rgba(254, 205, 2, 0.25),
+            rgba(167, 111, 207, 0.25)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(254, 205, 2, 0.4);
+    transform: translateY(-2px);
+}
+
+#toggleAllBtn:active {
+    transform: scale(0.97);
+}
+
+#toggleAllBtn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(254, 205, 2, 0.6),
+    0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
 /* ---------- Section ---------- */
 .section {
     padding: 1.5rem;
