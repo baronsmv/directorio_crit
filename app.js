@@ -75,26 +75,37 @@ function render(sections) {
 function toggleSection(section) {
     const cards = section.querySelector(".cards");
 
-    if (section.classList.contains("collapsed")) {
-        // Expand
-        section.classList.remove("collapsed");
+    const isHidden = cards.style.display === "none";
 
-        const height = cards.scrollHeight + "px";
-        cards.style.height = height;
+    if (isHidden) {
+        // EXPAND
 
-        setTimeout(() => {
-            cards.style.height = "auto";
-        }, 500);
-    } else {
-        // Collapse
-        const height = cards.scrollHeight + "px";
-        cards.style.height = height;
+        cards.style.display = "grid";
 
         requestAnimationFrame(() => {
-            cards.style.height = "0px";
+            cards.style.opacity = "0";
+            cards.style.transform = "translateY(-10px)";
+
+            requestAnimationFrame(() => {
+                cards.style.opacity = "1";
+                cards.style.transform = "translateY(0)";
+            });
         });
 
-        section.classList.add("collapsed");
+        section.classList.remove("collapsed");
+    } else {
+        // COLLAPSE
+
+        section.classList.add("collapsing");
+
+        cards.style.opacity = "0";
+        cards.style.transform = "translateY(-10px)";
+
+        setTimeout(() => {
+            cards.style.display = "none";
+            section.classList.remove("collapsing");
+            section.classList.add("collapsed");
+        }, 300);
     }
 }
 
