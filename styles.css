@@ -47,6 +47,7 @@ header .logo {
     background-color: var(--primary-light);
     width: 30vw;
     height: 30vw;
+    pointer-events: none;
 }
 
 /* ---------- Search Bar ---------- */
