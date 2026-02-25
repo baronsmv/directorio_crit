@@ -155,15 +155,16 @@ header .logo {
 }
 
 .section.collapsed .cards {
-    max-height: 0;
     opacity: 0;
+    transform: translateY(-10px);
     pointer-events: none;
-    transition: max-height 0.6s ease, opacity 0.6s ease;
+    display: none;
 }
 
 .section .cards {
     opacity: 1;
-    transition: max-height 0.6s ease, opacity 0.6s ease;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* ---------- Grid ---------- */

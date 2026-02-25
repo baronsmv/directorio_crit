@@ -54,7 +54,7 @@ function render(sections) {
         const title = document.createElement("div");
         title.className = "section-title";
         title.innerHTML = `<h2>${section.name}</h2><span>▼</span>`;
-        title.onclick = () => sec.classList.toggle("collapsed");
+        title.onclick = () => toggleSection(sec);
 
         const grid = document.createElement("div");
         grid.className = "cards";
@@ -66,9 +66,35 @@ function render(sections) {
     });
 
     if (!allExpanded) {
-        document.querySelectorAll(".section").forEach(sec =>
-            sec.classList.add("collapsed")
-        );
+        document.querySelectorAll(".section").forEach(sec => {
+            toggleSection(sec);
+        });
+    }
+}
+
+function toggleSection(section) {
+    const cards = section.querySelector(".cards");
+
+    if (section.classList.contains("collapsed")) {
+        // Expand
+        section.classList.remove("collapsed");
+
+        const height = cards.scrollHeight + "px";
+        cards.style.height = height;
+
+        setTimeout(() => {
+            cards.style.height = "auto";
+        }, 500);
+    } else {
+        // Collapse
+        const height = cards.scrollHeight + "px";
+        cards.style.height = height;
+
+        requestAnimationFrame(() => {
+            cards.style.height = "0px";
+        });
+
+        section.classList.add("collapsed");
     }
 }
 
@@ -78,10 +104,14 @@ function toggleAllSections() {
     allExpanded = !allExpanded;
 
     sections.forEach(sec => {
-        if (allExpanded) {
-            sec.classList.remove("collapsed");
-        } else {
-            sec.classList.add("collapsed");
+        const isCollapsed = sec.classList.contains("collapsed");
+
+        if (allExpanded && isCollapsed) {
+            toggleSection(sec);
+        }
+
+        if (!allExpanded && !isCollapsed) {
+            toggleSection(sec);
         }
     });
 
